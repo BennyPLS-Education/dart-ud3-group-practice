@@ -13,6 +13,8 @@ class ShoppingCartState {
 
   ShoppingCartState copyAdd(Product product) {
     Map<Product, int> newProducts = Map.from(products);
+    print(newProducts.containsKey(product));
+    print(newProducts[product]);
     if (newProducts.containsKey(product)) {
       newProducts[product] = newProducts[product]! + 1;
     } else {

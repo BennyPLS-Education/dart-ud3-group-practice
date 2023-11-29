@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:group_practice/bloc/login_bloc.dart';
+import 'package:group_practice/bloc/shop_bloc.dart';
+import 'package:group_practice/events/shop_events.dart';
+import 'package:group_practice/models/product.dart';
 import 'package:group_practice/states/login_state.dart';
+import 'package:group_practice/states/shopping_cart_state.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -25,7 +29,7 @@ class HomeScreen extends StatelessWidget {
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
-          Row(
+          Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
               BlocBuilder(
@@ -42,6 +46,23 @@ class HomeScreen extends StatelessWidget {
                   );
                 },
               ),
+              BlocBuilder(
+                bloc: BlocProvider.of<ShopBloc>(context),
+                builder: (context, ShoppingCartState state) {
+                  var totalProducts = state.getProducts.values.fold(
+                      0, (previousValue, element) => previousValue + element);
+                  return Text(
+                    'Tens ${totalProducts} productes al carro',
+                    style: const TextStyle(
+                      fontSize: 32.0,
+                      fontStyle: FontStyle.italic,
+                      fontWeight: FontWeight.bold,
+                    ),
+                    textAlign: TextAlign.center,
+                  );
+                },
+              ),
+              Text("hola"),
             ],
           )
         ],
@@ -49,6 +70,11 @@ class HomeScreen extends StatelessWidget {
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           // Acció quan es polsa el botó d'afegir
+          BlocProvider.of<ShopBloc>(context).add(
+            ShopEventAdd(
+              Product(1, 'hola'),
+            ),
+          );
         },
         backgroundColor: Colors.green,
         child: const Icon(Icons.add),
