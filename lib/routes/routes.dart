@@ -25,7 +25,7 @@ final _routeMap = {
 
 final _routes = <String, WidgetBuilder>{
   '/': (context) => const HomeScreen(),
-  'logOrReg': (context) => LoginOrRegisterScreen(),
+  'logOrReg': (context) => const LoginScreen(),
 };
 
 Map<String, WidgetBuilder> getRoutes() => _routes;

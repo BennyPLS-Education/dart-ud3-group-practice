@@ -6,14 +6,14 @@ import 'package:group_practice/bloc/bloc.dart';
 import 'package:group_practice/events/events.dart';
 import 'package:group_practice/states/states.dart';
 
-class LoginOrRegisterScreen extends StatefulWidget {
-  const LoginOrRegisterScreen() : super(key: null);
+class LoginScreen extends StatefulWidget {
+  const LoginScreen() : super(key: null);
 
   @override
-  _LoginOrRegisterScreenState createState() => _LoginOrRegisterScreenState();
+  State<LoginScreen> createState() => _LoginScreenState();
 }
 
-class _LoginOrRegisterScreenState extends State<LoginOrRegisterScreen> {
+class _LoginScreenState extends State<LoginScreen> {
   final GlobalKey<FormState> _key = GlobalKey();
 
   bool _isLoading = false;
