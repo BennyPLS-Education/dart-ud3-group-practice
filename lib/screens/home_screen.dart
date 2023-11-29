@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:group_practice/bloc/bloc.dart';
-import 'package:group_practice/events/events.dart';
-import 'package:group_practice/models/models.dart';
 import 'package:group_practice/states/states.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -24,59 +22,45 @@ class HomeScreen extends StatelessWidget {
           )
         ],
       ),
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: <Widget>[
-          Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              BlocBuilder(
-                bloc: BlocProvider.of<LoginBloc>(context),
-                builder: (BuildContext context, LoginState state) {
-                  return Text(
-                    'Benvingut ${state.getCorreu}!',
-                    style: const TextStyle(
-                      fontSize: 32.0,
-                      fontStyle: FontStyle.italic,
-                      fontWeight: FontWeight.bold,
-                    ),
-                    textAlign: TextAlign.center,
-                  );
-                },
+      body: _body(context),
+    );
+  }
+
+  Column _body(BuildContext context) {
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        BlocBuilder(
+          bloc: BlocProvider.of<LoginBloc>(context),
+          builder: (BuildContext context, LoginState state) {
+            return Text(
+              'Benvingut ${state.getCorreu}!',
+              style: const TextStyle(
+                fontSize: 32.0,
+                fontStyle: FontStyle.italic,
+                fontWeight: FontWeight.bold,
               ),
-              BlocBuilder(
-                bloc: BlocProvider.of<ShopBloc>(context),
-                builder: (context, ShoppingCartState state) {
-                  var totalProducts = state.getProducts.values.fold(
-                      0, (previousValue, element) => previousValue + element);
-                  return Text(
-                    'Tens ${totalProducts} productes al carro',
-                    style: const TextStyle(
-                      fontSize: 32.0,
-                      fontStyle: FontStyle.italic,
-                      fontWeight: FontWeight.bold,
-                    ),
-                    textAlign: TextAlign.center,
-                  );
-                },
+              textAlign: TextAlign.center,
+            );
+          },
+        ),
+        BlocBuilder(
+          bloc: BlocProvider.of<ShopBloc>(context),
+          builder: (context, ShoppingCartState state) {
+            var totalProducts = state.getProducts.values
+                .fold(0, (previousValue, element) => previousValue + element);
+            return Text(
+              'Tens $totalProducts productes al carro',
+              style: const TextStyle(
+                fontSize: 32.0,
+                fontStyle: FontStyle.italic,
+                fontWeight: FontWeight.bold,
               ),
-              const Text("hola"),
-            ],
-          )
-        ],
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          // Acció quan es polsa el botó d'afegir
-          BlocProvider.of<ShopBloc>(context).add(
-            ShopEventAdd(
-              Product(1, 'hola'),
-            ),
-          );
-        },
-        backgroundColor: Colors.green,
-        child: const Icon(Icons.add),
-      ),
+              textAlign: TextAlign.center,
+            );
+          },
+        ),
+      ],
     );
   }
 }
