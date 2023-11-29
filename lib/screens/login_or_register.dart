@@ -58,11 +58,12 @@ class _LoginOrRegisterScreenState extends State<LoginOrRegisterScreen>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            Container(
+            SizedBox(
               height: 200,
               child: AnimatedLogo(animation: animation),
             ),
@@ -112,7 +113,7 @@ class _LoginOrRegisterScreenState extends State<LoginOrRegisterScreen>
       mainAxisAlignment: MainAxisAlignment.center,
       children: <Widget>[
         Text(isLogin ? 'Inicia sessió' : 'Registra\'t'),
-        Container(
+        SizedBox(
           width: 300.0,
           child: Form(
             key: _key,
