@@ -1,4 +1,4 @@
-import '../states/login_state.dart';
+import 'package:group_practice/states/states.dart';
 
 abstract class LoginEvents {
   LoginEvents();

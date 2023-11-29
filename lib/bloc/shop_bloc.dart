@@ -1,6 +1,6 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:group_practice/events/shop_events.dart';
-import 'package:group_practice/states/shopping_cart_state.dart';
+import 'package:group_practice/events/events.dart';
+import 'package:group_practice/states/states.dart';
 
 class ShopBloc extends Bloc<ShoppingCartEvents, ShoppingCartState> {
   ShopBloc() : super(ShoppingCartState.initial());

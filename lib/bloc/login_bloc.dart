@@ -1,6 +1,6 @@
 import 'package:bloc/bloc.dart';
-import 'package:group_practice/events/login_events.dart';
-import 'package:group_practice/states/login_state.dart';
+import 'package:group_practice/events/events.dart';
+import 'package:group_practice/states/states.dart';
 
 class LoginBloc extends Bloc<LoginEvents, LoginState> {
   LoginBloc() : super(LoginState.initial());

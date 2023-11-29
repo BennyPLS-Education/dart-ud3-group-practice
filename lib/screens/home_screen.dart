@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:group_practice/bloc/login_bloc.dart';
-import 'package:group_practice/bloc/shop_bloc.dart';
-import 'package:group_practice/events/shop_events.dart';
-import 'package:group_practice/models/product.dart';
-import 'package:group_practice/states/login_state.dart';
-import 'package:group_practice/states/shopping_cart_state.dart';
+import 'package:group_practice/bloc/bloc.dart';
+import 'package:group_practice/events/events.dart';
+import 'package:group_practice/models/models.dart';
+import 'package:group_practice/states/states.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -62,7 +60,7 @@ class HomeScreen extends StatelessWidget {
                   );
                 },
               ),
-              Text("hola"),
+              const Text("hola"),
             ],
           )
         ],

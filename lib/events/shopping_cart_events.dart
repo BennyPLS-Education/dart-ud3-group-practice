@@ -1,4 +1,4 @@
-import 'package:group_practice/models/product.dart';
+import 'package:group_practice/models/models.dart';
 
 abstract class ShoppingCartEvents {
   ShoppingCartEvents();
