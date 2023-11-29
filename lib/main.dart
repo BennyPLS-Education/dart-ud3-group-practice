@@ -1,36 +1,50 @@
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:group_practice/bloc/shop_bloc.dart';
 
 import 'bloc/login_bloc.dart';
 import 'screens/screens.dart';
-import 'package:flutter/material.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(const App());
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+class AppState extends StatelessWidget {
+  const AppState({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider<ShopBloc>(
+          create: (context) => ShopBloc(),
+        ),
+        BlocProvider<LoginBloc>(
+          create: (context) => LoginBloc(),
+        ),
+      ],
+      child: App(),
+    );
+  }
+}
+
+class App extends StatelessWidget {
+  const App() : super(key: null);
 
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (_) => ShopBloc(),
-      child: BlocProvider(
-        create: (_) => LoginBloc(),
-        child: MaterialApp(
-            debugShowCheckedModeBanner: false,
-            title: 'Flutter Demo',
-            theme: ThemeData(
-              primarySwatch: Colors.blue,
-            ),
-            routes: {
-              '/': (context) => const HomeScreen(),
-              'logOrReg': (context) => LoginOrRegisterScreen(),
-            },
-            initialRoute: 'logOrReg'),
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      title: 'Shopping App (Bloc Demo)',
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
       ),
+      routes: {
+        '/': (context) => const HomeScreen(),
+        'logOrReg': (context) => LoginOrRegisterScreen(),
+      },
+      initialRoute: 'logOrReg',
     );
   }
 }
