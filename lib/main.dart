@@ -14,16 +14,12 @@ class AppState extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MultiBlocProvider(
-      providers: [
-        BlocProvider<ShopBloc>(
-          create: (context) => ShopBloc(),
-        ),
-        BlocProvider<LoginBloc>(
-          create: (context) => LoginBloc(),
-        ),
-      ],
-      child: App(),
+    return BlocProvider(
+      create: (context) => ShopBloc(),
+      child: BlocProvider(
+        create: (context) => LoginBloc(),
+        child: const App(),
+      ),
     );
   }
 }
