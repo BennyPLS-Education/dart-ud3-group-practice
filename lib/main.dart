@@ -6,7 +6,7 @@ import 'bloc/login_bloc.dart';
 import 'screens/screens.dart';
 
 void main() {
-  runApp(const App());
+  runApp(const AppState());
 }
 
 class AppState extends StatelessWidget {
@@ -14,20 +14,20 @@ class AppState extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => ShopBloc(),
-      child: BlocProvider(
+    return MultiBlocProvider(providers: [
+      BlocProvider<LoginBloc>(
         create: (context) => LoginBloc(),
-        child: const App(),
       ),
-    );
+      BlocProvider<ShopBloc>(
+        create: (context) => ShopBloc(),
+      ),
+    ], child: const App());
   }
 }
 
 class App extends StatelessWidget {
   const App() : super(key: null);
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(

@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:group_practice/bloc/bloc.dart';
@@ -31,6 +33,8 @@ class _LoginOrRegisterScreenState extends State<LoginOrRegisterScreen>
 
   bool _isLoading = false;
 
+  StreamSubscription<LoginState>? loginSubscription;
+
   @override
   initState() {
     super.initState();
@@ -60,6 +64,16 @@ class _LoginOrRegisterScreenState extends State<LoginOrRegisterScreen>
 
   @override
   Widget build(BuildContext context) {
+    final bloc = BlocProvider.of<LoginBloc>(context);
+    loginSubscription = bloc.stream.listen((LoginState state) {
+      if (state.isValid ?? false) {
+        Navigator.of(context).pushReplacementNamed('/');
+        loginSubscription!.cancel();
+      } else {
+        print('No es valid');
+      }
+    });
+
     return Scaffold(
       resizeToAvoidBottomInset: false,
       body: Center(
@@ -208,22 +222,8 @@ class _LoginOrRegisterScreenState extends State<LoginOrRegisterScreen>
         _isLoading = false;
       });
 
-      var provider = BlocProvider.of<LoginBloc>(context);
+      final provider = BlocProvider.of<LoginBloc>(context);
       provider.add(LoginEventRequest(_correu!, _passwd!));
-      print(provider.state.isValid);
-      BlocBuilder(
-        bloc: BlocProvider.of<LoginBloc>(context),
-        builder: (BuildContext context, LoginState state) {
-          if (state.isValid ?? false) {
-            Navigator.of(context).pushReplacementNamed('/');
-          } else {
-            print('No es valid');
-          }
-
-          return Placeholder();
-        },
-      );
-      // Navigator.of(context).pushReplacementNamed('/');
     }
   }
 }
