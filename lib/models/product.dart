@@ -1,8 +1,10 @@
-class Product {
-  final double price;
-  final String image;
+import 'dart:convert';
 
-  Product(this.price, this.image);
+class Product {
+  final double? price;
+  final String? image;
+
+  Product({this.price, this.image});
 
   @override
   bool operator ==(Object other) {

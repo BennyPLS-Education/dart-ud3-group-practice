@@ -9,7 +9,7 @@ class ApiProductsBloc extends Bloc<ApiProductsEvents, ApiProductsState> {
   @override
   Stream<ApiProductsState> mapEventToState(ApiProductsEvents event) async* {
     if (event is ApiProductsLoaded) {
-      var products = [Product(10, 'image')];
+      var products = [Product(price: 10, image: 'image')];
       yield ApiProductsState(products);
     }
   }

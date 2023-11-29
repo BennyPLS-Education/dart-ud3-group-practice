@@ -222,8 +222,7 @@ class _LoginOrRegisterScreenState extends State<LoginOrRegisterScreen>
         _isLoading = false;
       });
 
-
-      final provider = BlocProvider.of<LoginBloc>(context)
+      final provider = BlocProvider.of<LoginBloc>(context);
       provider.add(LoginEventRequest(_correu!, _passwd!));
     }
   }
