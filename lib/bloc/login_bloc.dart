@@ -7,8 +7,12 @@ class LoginBloc extends Bloc<LoginEvents, LoginState> {
 
   @override
   Stream<LoginState> mapEventToState(LoginEvents event) async* {
-    if (event is LoginEvent) {
-      yield event.state;
+    if (event is LoginEventRequest) {
+      if (event.correu == "t@t.com" && event.passwd == "admin1234") {
+        yield LoginState(event.correu, event.passwd, true);
+      } else {
+        yield LoginState(event.correu, event.passwd, false);
+      }
     }
   }
 }

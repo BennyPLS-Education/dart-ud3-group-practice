@@ -4,8 +4,9 @@ abstract class LoginEvents {
   LoginEvents();
 }
 
-class LoginEvent extends LoginEvents {
-  final LoginState state;
+class LoginEventRequest extends LoginEvents {
+  final String correu;
+  final String passwd;
 
-  LoginEvent(this.state);
+  LoginEventRequest(this.correu, this.passwd);
 }

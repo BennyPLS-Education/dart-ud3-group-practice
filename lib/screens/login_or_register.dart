@@ -15,6 +15,9 @@ class _LoginOrRegisterScreenState extends State<LoginOrRegisterScreen>
   late Animation<double> animation;
   final GlobalKey<FormState> _key = GlobalKey();
 
+  String user = 't@t.com';
+  String password = 'CalaClara';
+
   bool isLogin = false;
   bool isRegister = false;
   late final List<bool> _selectedEvent = [isLogin, isRegister];
@@ -198,16 +201,29 @@ class _LoginOrRegisterScreenState extends State<LoginOrRegisterScreen>
       setState(() {
         _isLoading = true;
       });
+
       // Aquí es realitzaria la petició de login a l'API o similar
       missatge = 'Gràcies \n $_correu \n $_passwd';
       setState(() {
         _isLoading = false;
       });
-      BlocProvider.of<LoginBloc>(context).add(LoginEvent(
-        LoginState(_correu, _passwd),
-      ));
 
-      Navigator.of(context).pushReplacementNamed('/');
+      var provider = BlocProvider.of<LoginBloc>(context);
+      provider.add(LoginEventRequest(_correu!, _passwd!));
+      print(provider.state.isValid);
+      BlocBuilder(
+        bloc: BlocProvider.of<LoginBloc>(context),
+        builder: (BuildContext context, LoginState state) {
+          if (state.isValid ?? false) {
+            Navigator.of(context).pushReplacementNamed('/');
+          } else {
+            print('No es valid');
+          }
+
+          return Placeholder();
+        },
+      );
+      // Navigator.of(context).pushReplacementNamed('/');
     }
   }
 }
