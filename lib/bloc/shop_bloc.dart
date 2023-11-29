@@ -8,10 +8,17 @@ class ShopBloc extends Bloc<ShoppingCartEvents, ShoppingCartState> {
   @override
   Stream<ShoppingCartState> mapEventToState(ShoppingCartEvents event) async* {
     if (event is ShopEventAdd) {
-      yield state.copyAdd(event.product);
+      yield _add(event);
+    } else if (event is ShopEventRemove) {
+      yield _remove(event);
     }
-    if (event is ShopEventRemove) {
-      yield state.copyRemove(event.product);
-    }
+  }
+
+  ShoppingCartState _add(ShopEventAdd event) {
+    return state.copyAdd(event.product);
+  }
+
+  ShoppingCartState _remove(ShopEventRemove event) {
+    return state.copyRemove(event.product);
   }
 }
