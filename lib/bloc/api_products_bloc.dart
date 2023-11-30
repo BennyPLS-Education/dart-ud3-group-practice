@@ -12,10 +12,6 @@ class ApiProductsBloc extends Bloc<ApiProductsEvents, ApiProductsState> {
   Stream<ApiProductsState> mapEventToState(ApiProductsEvents event) async* {
     if (event is ApiProductsLoaded) {
       var products = await fetchData();
-      // var products = [
-      //   Product(price: 10.0, image: 'https://picsum.photos/200'),
-      //   Product(price: 15.0, image: 'https://picsum.photos/100')
-      // ];
       yield ApiProductsState(products);
     }
   }
