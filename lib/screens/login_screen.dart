@@ -24,7 +24,6 @@ class _LoginScreenState extends State<LoginScreen> {
   RegExp contRegExp = RegExp(r'^([1-zA-Z0-1@.\s]{1,255})$');
   String? _correu;
   String? _passwd;
-  bool _rememberUserCheck = false;
 
   StreamSubscription<LoginState>? loginSubscription;
 
@@ -103,7 +102,6 @@ class _LoginScreenState extends State<LoginScreen> {
         children: [
           _emailField(),
           _passwdField(),
-          _rememberUserCheckbox(),
           _submitButton(),
           _formStatus(),
         ],
@@ -175,19 +173,6 @@ class _LoginScreenState extends State<LoginScreen> {
     }
 
     return null;
-  }
-
-  Widget _rememberUserCheckbox() {
-    return CheckboxListTile(
-      value: _rememberUserCheck,
-      onChanged: (value) {
-        setState(() {
-          _rememberUserCheck = value!;
-        });
-      },
-      title: const Text('Recorda\'m'),
-      controlAffinity: ListTileControlAffinity.leading,
-    );
   }
 
   Widget _formStatus() {
