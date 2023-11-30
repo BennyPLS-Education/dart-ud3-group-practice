@@ -46,7 +46,14 @@ class _LoginScreenState extends State<LoginScreen> {
   }
 
   void _streamListener(LoginState state) {
-    if (state.isValid ?? false) {
+    if (state.isValid == null) {
+      setState(() {
+        _passwd = '';
+        _correu = '';
+        _isValid = null;
+      });
+      return;
+    } else if (state.isValid ?? false) {
       Navigator.of(context).pushNamed(Location.home.path);
     } else {
       _isValid = false;
@@ -55,8 +62,6 @@ class _LoginScreenState extends State<LoginScreen> {
     setState(() {
       _isLoading = false;
     });
-    
-    print(state.getEmail);
   }
 
   Center _body() {
@@ -114,8 +119,10 @@ class _LoginScreenState extends State<LoginScreen> {
   }
 
   TextFormField _emailField() {
+
     return TextFormField(
-      initialValue: '',
+      controller: TextEditingController(text: _correu),
+      initialValue: null,
       validator: _emailValidator,
       keyboardType: TextInputType.emailAddress,
       maxLength: 50,
@@ -142,7 +149,8 @@ class _LoginScreenState extends State<LoginScreen> {
 
   TextFormField _passwdField() {
     return TextFormField(
-      initialValue: '',
+      controller: TextEditingController(text: _passwd),
+      initialValue: null,
       validator: _passwdValidator,
       keyboardType: TextInputType.text,
       maxLength: 20,
