@@ -1,7 +1,7 @@
 import 'dart:convert';
 
 class Product {
-  final double? price;
+  final int? price;
   final String? image;
 
   Product({this.price, this.image});

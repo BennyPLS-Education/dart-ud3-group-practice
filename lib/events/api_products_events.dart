@@ -5,7 +5,5 @@ abstract class ApiProductsEvents {
 }
 
 class ApiProductsLoaded extends ApiProductsEvents {
-  late final ApiProductsState state;
-
-  ApiProductsLoaded(this.state);
+  ApiProductsLoaded();
 }

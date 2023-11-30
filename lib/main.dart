@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:group_practice/bloc/api_products_bloc.dart';
 import 'package:group_practice/bloc/shop_bloc.dart';
 import 'package:group_practice/routes/routes.dart';
 
@@ -20,6 +21,9 @@ class AppState extends StatelessWidget {
         ),
         BlocProvider<ShopBloc>(
           create: (context) => ShopBloc(),
+        ),
+        BlocProvider<ApiProductsBloc>(
+          create: (context) => ApiProductsBloc(),
         ),
       ],
       child: const App(),

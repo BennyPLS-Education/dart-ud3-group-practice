@@ -29,7 +29,7 @@ class ShoppingCartState {
     if (newProducts.containsKey(product)) {
       if (newProducts[product] == 1) {
         newProducts.remove(product);
-      } else {
+      } else if (newProducts[product]! > 1) {
         newProducts[product] = newProducts[product]! - 1;
       }
     }
