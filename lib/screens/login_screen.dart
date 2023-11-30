@@ -102,6 +102,7 @@ class _LoginScreenState extends State<LoginScreen> {
         children: [
           _emailField(),
           _passwdField(),
+          const SizedBox(height: 60.0),
           _submitButton(),
           _formStatus(),
         ],
