@@ -1,10 +1,10 @@
 import 'dart:convert';
 
 class Product {
-  final int? price;
-  final String? image;
+  final int price;
+  final String image;
 
-  Product({this.price, this.image});
+  Product({required this.price, required this.image});
 
   @override
   bool operator ==(Object other) {
@@ -21,8 +21,8 @@ class Product {
   String toRawJson() => json.encode(toJson());
 
   factory Product.fromJson(Map<String, dynamic> json) => Product(
-        image: json["image"],
-        price: json["price"],
+        image: json["image"] ?? '',
+        price: json["price"] ?? 0,
       );
 
   Map<String, dynamic> toJson() => {

@@ -8,3 +8,7 @@ class LoginEventRequest extends LoginEvents {
 
   LoginEventRequest(this.email, this.passwd);
 }
+
+class LogoutEvent extends LoginEvents {
+  LogoutEvent();
+}

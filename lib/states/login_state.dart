@@ -7,7 +7,7 @@ class LoginState {
 
   LoginState.initial() : this(null, null, null);
 
-  String? get getCorreu => _correu;
+  String? get getEmail => _correu;
 
   String? get getPasswd => _passwd;
 

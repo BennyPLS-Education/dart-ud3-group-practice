@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:group_practice/bloc/bloc.dart';
 import 'package:group_practice/events/events.dart';
+import 'package:group_practice/routes/routes.dart';
 import 'package:group_practice/states/states.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -46,7 +47,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
   void _streamListener(LoginState state) {
     if (state.isValid ?? false) {
-      Navigator.of(context).pushReplacementNamed('/');
+      Navigator.of(context).pushNamed(Location.home.path);
     } else {
       _isValid = false;
     }
@@ -54,6 +55,8 @@ class _LoginScreenState extends State<LoginScreen> {
     setState(() {
       _isLoading = false;
     });
+    
+    print(state.getEmail);
   }
 
   Center _body() {

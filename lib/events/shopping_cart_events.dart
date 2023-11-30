@@ -15,3 +15,7 @@ class ShopEventRemove extends ShoppingCartEvents {
 
   ShopEventRemove(this.product);
 }
+
+class ShopEventClear extends ShoppingCartEvents {
+  ShopEventClear();
+}

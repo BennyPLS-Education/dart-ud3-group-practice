@@ -5,7 +5,6 @@ import 'package:group_practice/bloc/shop_bloc.dart';
 import 'package:group_practice/routes/routes.dart';
 
 import 'bloc/login_bloc.dart';
-import 'screens/screens.dart';
 
 void main() => runApp(const AppState());
 
@@ -41,7 +40,7 @@ class App extends StatelessWidget {
       title: 'Shopping App (Bloc Demo)',
       theme: getTheme(),
       routes: getRoutes(),
-      initialRoute: 'logOrReg',
+      initialRoute: Location.login.path,
     );
   }
 

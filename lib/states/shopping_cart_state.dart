@@ -11,6 +11,26 @@ class ShoppingCartState {
 
   Map<Product, int> get getProducts => products;
 
+  int get count {
+    int count = 0;
+    products.forEach((product, quantity) {
+      count += quantity;
+    });
+    return count;
+  }
+
+  double get totalPrice {
+    double totalPrice = 0;
+    products.forEach((product, quantity) {
+      totalPrice += product.price * quantity;
+    });
+    return totalPrice;
+  }
+
+  int subTotal(Product product) {
+    return product.price * (products[product] ?? 0);
+  }
+
   ShoppingCartState copyAdd(Product product) {
     Map<Product, int> newProducts = Map.from(products);
 

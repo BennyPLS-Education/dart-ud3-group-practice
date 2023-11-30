@@ -12,6 +12,8 @@ class LoginBloc extends Bloc<LoginEvents, LoginState> {
   Stream<LoginState> mapEventToState(LoginEvents event) async* {
     if (event is LoginEventRequest) {
       yield _login(event);
+    } else if (event is LogoutEvent) {
+      yield LoginState.initial();
     }
   }
 

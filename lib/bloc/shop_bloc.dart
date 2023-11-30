@@ -11,6 +11,8 @@ class ShopBloc extends Bloc<ShoppingCartEvents, ShoppingCartState> {
       yield _add(event);
     } else if (event is ShopEventRemove) {
       yield _remove(event);
+    } else if (event is ShopEventClear) {
+      yield ShoppingCartState.initial();
     }
   }
 

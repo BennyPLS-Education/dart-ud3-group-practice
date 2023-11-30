@@ -13,19 +13,18 @@ extension RoutesExtension on Location {
   }
 }
 
-enum Location {
-  home,
-  logOrReg,
-}
+enum Location { home, login, cart }
 
 final _routeMap = {
   Location.home: '/',
-  Location.logOrReg: 'logOrReg',
+  Location.login: 'login',
+  Location.cart: 'cart',
 };
 
 final _routes = <String, WidgetBuilder>{
   '/': (context) => const HomeScreen(),
-  'logOrReg': (context) => const LoginScreen(),
+  'login': (context) => const LoginScreen(),
+  'cart': (context) => const ShoppingCartScreen(),
 };
 
 Map<String, WidgetBuilder> getRoutes() => _routes;
